@@ -1,0 +1,44 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Movies</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Year</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @movies.each do |movie| %>
+      <tr>
+        <td><%= movie.id %></td>
+        <td><%= movie.title %></td>
+        <td><%= movie.year %></td>
+        <td><%= link_to 'Show', movie %></td>
+
+        <% if can? :edit, movie %>
+        <td><%= link_to 'Edit', edit_movie_path(movie) %></td>
+        <% else %>
+        <td></td>
+        <% end %>
+
+        <% if can? :destroy, movie %>
+        <td><%= link_to 'Destroy', movie, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% else %>
+        <td></td>
+        <% end %>
+        
+      </tr>
+    <% end %>
+  </tbody>
+
+</table>
+
+<br>
+<%= paginate @movies %>
+
+<%= link_to 'New Movie', new_movie_path %>

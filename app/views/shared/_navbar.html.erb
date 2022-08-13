@@ -1,0 +1,13 @@
+<nav>
+    <a href="<%= root_path %>">Home</a>
+    <% if user_signed_in? %>
+    <%= link_to 'Salir', destroy_user_session_path, method: :delete %>
+    <% else %>
+    <%= link_to 'Entrar', new_user_session_path %>
+    <% end %>
+    <a href="/about">About</a>
+    <a href="/blog">Blog</a>
+    <a href="/notes">Notes</a>
+    <a href="/guestbook">Guestbook</a>
+    <a href="/contact">Contact</a>
+</nav>
